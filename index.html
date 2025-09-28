@@ -5,14 +5,14 @@
 <title>WPM Quiz with Audio</title>
 <style>
   body { font-family: Arial, sans-serif; padding: 20px; }
-  #text { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; background: #f9f9f9; }
+  #text { border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; background: #f9f9f9; }
   #controls { margin: 20px 0; }
   #questions { margin-top: 20px; }
 </style>
 </head>
 <body>
 
-<h2>Reading WPM Quiz (100 Words)</h2>
+<h2>Three-minute Training</h2>
 
 <!-- 音声再生 -->
 <h3>Listen to the audio:</h3>
@@ -35,11 +35,14 @@ Learning a new language can be both exciting and challenging. Many students find
 <!-- 4択クイズ -->
 <div id="questions">
   <h3>Quiz Question</h3>
-  <label>Which of the following are mentioned as effective strategies to improve language skills? (Select all that apply)</label><br>
-  <input type="checkbox" class="q1" value="a"> Reading short stories or articles<br>
-  <input type="checkbox" class="q1" value="b"> Watching TV<br>
-  <input type="checkbox" class="q1" value="c"> Speaking with native speakers<br>
-  <input type="checkbox" class="q1" value="d"> Sleeping<br>
+  <label>Select all options below that match the content of the passage. (Select all that apply)</label><br>
+  <input type="checkbox" class="q1" value="a"> It helps robots work with people.<br>
+  <input type="checkbox" class="q1" value="b"> Robots using Gemini Robotics 1.5 need training for every job.
+<br>
+  <input type="checkbox" class="q1" value="c"> Robots can move and act in the real world with Gemini Robotics 1.5.
+s<br>
+  <input type="checkbox" class="q1" value="d"> Gemini Robotics 1.5 is not safe for school.
+<br>
 </div>
 
 <div id="result"></div>
@@ -84,3 +87,4 @@ function finishReading() {
 
 </body>
 </html>
+
