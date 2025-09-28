@@ -14,12 +14,13 @@
     text-align: center;
   }
 
+  /* 本文を1.5倍 */
   #text {
     border: 1px solid #ccc;
     padding: 20px;
     margin-bottom: 30px;
     background: #f9f9f9;
-    font-size: 1.1em;
+    font-size: 1.65em;   /* 1.1em × 1.5 */
   }
 
   #controls {
@@ -27,10 +28,10 @@
     margin: 20px 0;
   }
 
-  /* ボタン1.5倍拡大 */
+  /* ボタンを1.5倍 */
   button {
-    font-size: 1.95em;      /* 1.3em × 1.5 */
-    padding: 22px 45px;     /* 1.5倍 */
+    font-size: 1.95em;
+    padding: 22px 45px;
     margin: 15px;
     border-radius: 12px;
     cursor: pointer;
@@ -44,11 +45,13 @@
     background-color: #45a049;
   }
 
-  /* 音声プレーヤー余白6行分 */
+  /* 音声プレーヤーの余白を強調 & 重なり防止 */
   audio {
     display: block;
-    margin: 6em 0;          /* 上下6行分の余白 */
+    margin: 6em auto;   /* 上下6行分の余白 */
     width: 100%;
+    position: relative;
+    z-index: 10;        /* テキストに埋もれないように */
   }
 
   #questions {
@@ -56,14 +59,14 @@
   }
 
   .question-label {
-    font-size: 1.65em;       /* 1.1em × 1.5 */
+    font-size: 1.65em;  /* 1.1em × 1.5 */
     display: block;
     margin-bottom: 15px;
   }
 
   input[type="checkbox"] {
-    width: 36px;             /* 24px × 1.5 */
-    height: 36px;            /* 24px × 1.5 */
+    width: 36px;   /* 24px × 1.5 */
+    height: 36px;  /* 24px × 1.5 */
     margin-right: 15px;
     vertical-align: middle;
   }
@@ -84,16 +87,20 @@
     button {
       width: 90%;
       padding: 22px 0;
-      font-size: 1.8em; /* 少し小さくしてスマホ幅に収める */
+      font-size: 1.8em;
     }
 
     #text {
-      font-size: 1em;
+      font-size: 1.4em;  /* モバイルでは少し小さめに */
       padding: 15px;
     }
 
     .question-label {
       font-size: 1.5em;
+    }
+
+    audio {
+      margin: 8em auto; /* スマホでさらに余白を広げる */
     }
   }
 </style>
