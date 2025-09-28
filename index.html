@@ -4,140 +4,82 @@
 <meta charset="UTF-8">
 <title>WPM Quiz with Audio</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    line-height: 1.6;
+  body { 
+    font-family: Arial, sans-serif; 
+    padding: 30px; 
+    font-size: 1.5em; /* 本文サイズ1.5倍 */
+    padding-top: 140px; /* 固定オーディオ分の余白 */
   }
 
   h2, h3 {
-    text-align: center;
+    font-size: 1.5em; /* 見出しも1.5倍 */
   }
 
-  /* 本文を1.5倍 */
-  #text {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 30px;
-    background: #f9f9f9;
-    font-size: 1.65em;   /* 1.1em × 1.5 */
-  }
-
-  #controls {
-    text-align: center;
-    margin: 20px 0;
-  }
-
-  /* ボタンを1.5倍 */
-  button {
-    font-size: 1.95em;
-    padding: 22px 45px;
-    margin: 15px;
-    border-radius: 12px;
-    cursor: pointer;
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    transition: background 0.3s;
-  }
-
-  button:hover {
-    background-color: #45a049;
-  }
-
-  /* 音声プレーヤーの余白を強調 & 重なり防止 */
+  /* 音声プレーヤーを画面上部に固定 */
   audio {
-    display: block;
-    margin: 6em auto;   /* 上下6行分の余白 */
-    width: 100%;
-    position: relative;
-    z-index: 10;        /* テキストに埋もれないように */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    transform: scale(1.5); /* 1.5倍拡大 */
+    transform-origin: top left;
+    z-index: 1000;
+    background: #fff; /* 下が透けないように白背景 */
+    padding: 10px 0;
   }
 
-  #questions {
-    margin-top: 30px;
-  }
-
-  .question-label {
-    font-size: 1.65em;  /* 1.1em × 1.5 */
-    display: block;
-    margin-bottom: 15px;
+  button {
+    font-size: 1.5em; 
+    padding: 15px 30px;
+    margin: 10px;
   }
 
   input[type="checkbox"] {
-    width: 36px;   /* 24px × 1.5 */
-    height: 36px;  /* 24px × 1.5 */
-    margin-right: 15px;
-    vertical-align: middle;
+    transform: scale(1.5); /* チェックボックスを1.5倍 */
+    margin-right: 10px;
   }
 
-  #result {
-    margin-top: 20px;
-    font-size: 1.1em;
-    text-align: center;
-    font-weight: bold;
+  #text { 
+    border: 1px solid #ccc; 
+    padding: 30px; 
+    margin-bottom: 30px; 
+    background: #f9f9f9; 
   }
 
-  /* モバイル対応 */
-  @media (max-width: 600px) {
-    body {
-      padding: 15px;
-    }
-
-    button {
-      width: 90%;
-      padding: 22px 0;
-      font-size: 1.8em;
-    }
-
-    #text {
-      font-size: 1.4em;  /* モバイルでは少し小さめに */
-      padding: 15px;
-    }
-
-    .question-label {
-      font-size: 1.5em;
-    }
-
-    audio {
-      margin: 8em auto; /* スマホでさらに余白を広げる */
-    }
-  }
+  #controls { margin: 30px 0; }
+  #questions { margin-top: 30px; }
 </style>
 </head>
 <body>
 
 <h2>Three-minute Training</h2>
 
+<!-- 音声再生 -->
 <h3>Listen to the audio:</h3>
 <audio controls>
   <source src="85. Gemini 1.5.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
-
+  
+<!-- テキスト -->
 <div id="text">
 【1】Gemini Robotics 1.5 is a new AI model. It helps robots see, think, and act in the real world. Robots with Gemini Robotics 1.5 can do many jobs. They can work with people, use tools, and solve problems. They do not need to be trained for every job; they can learn and try new things. This model is safe, smart, and works well. It is easy for developers to use. Gemini Robotics 1.5 helps robots finish tasks step by step. It is good for schools, homes, and factories. Now, robots can help people more. They can understand and move around. Gemini Robotics 1.5 makes robots helpful in our life.
 </div>
 
+<!-- スタート・フィニッシュボタン -->
 <div id="controls">
   <button onclick="startReading()">▶ Start</button>
   <button onclick="finishReading()">⏹ Finish</button>
 </div>
 
+<!-- 4択クイズ -->
 <div id="questions">
   <h3>Quiz</h3>
-  <label class="question-label">
-    <input type="checkbox" class="q1" value="a"> It helps robots work with people.
-  </label>
-  <label class="question-label">
-    <input type="checkbox" class="q1" value="b"> Robots using Gemini Robotics 1.5 need training for every job.
-  </label>
-  <label class="question-label">
-    <input type="checkbox" class="q1" value="c"> Robots can move and act in the real world with Gemini Robotics 1.5.
-  </label>
-  <label class="question-label">
-    <input type="checkbox" class="q1" value="d"> Gemini Robotics 1.5 is not safe for school.
-  </label>
+  <label>Select all options below that match the content of the passage. (Select all that apply)</label><br>
+  <input type="checkbox" class="q1" value="a"> It helps robots work with people.<br>
+  <input type="checkbox" class="q1" value="b"> Robots using Gemini Robotics 1.5 need training for every job.<br>
+  <input type="checkbox" class="q1" value="c"> Robots can move and act in the real world with Gemini Robotics 1.5.<br>
+  <input type="checkbox" class="q1" value="d"> Gemini Robotics 1.5 is not safe for school.<br>
 </div>
 
 <div id="result"></div>
