@@ -5,6 +5,11 @@
 <title>WPM Quiz with Audio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   body { 
     font-family: Arial, sans-serif; 
     padding: 30px; 
@@ -21,11 +26,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;          /* ← ここを100vwに変更 */
     z-index: 1000;
     background: #fff;
     padding: 10px 0;
-    box-sizing: border-box;
+    margin: 0;
+    border: none;
+    box-sizing: border-box;/* ← これも追加 */
   }
 
   button {
@@ -49,22 +56,22 @@
   #controls { margin: 30px 0; }
   #questions { margin-top: 30px; }
 
-  /* チェックボックスの選択肢に余白をあける */
   .question-option {
     display: block;
-    margin-bottom: 18px; /* 好みで調整、1行分空ける */
+    margin-bottom: 18px;
   }
 
   /* --- モバイル用スタイル --- */
   @media (max-width: 600px) {
     body { 
-      padding-top: 70px; /* オーディオ分の余白を小さく */
+      padding-top: 70px;
       font-size: 1.1em;
     }
     audio {
-      transform: none;    /* 拡大せず標準サイズ */
-      height: 44px;       /* iOSやAndroid標準UIに合わせる */
-      top: 8px;           /* アドレスバーを避けて少し下げる */
+      width: 100vw;      /* モバイルでもvwで統一 */
+      transform: none;
+      height: 44px;
+      top: 8px;
       padding: 0;
     }
     #text { padding: 15px; }
@@ -75,7 +82,6 @@
     input[type="checkbox"] {
       transform: scale(1.2);
     }
-    /* モバイルでもチェックボックス選択肢に余白を */
     .question-option {
       margin-bottom: 16px;
     }
@@ -146,5 +152,3 @@ function finishReading() {
 
 </body>
 </html>
-
-
