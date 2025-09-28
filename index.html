@@ -26,13 +26,17 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 80vw;          /* ← ここを80vwに変更 */
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;         /* PCのみ: 最大幅を指定 */
+    max-width: 100vw;     /* 画面幅を超えないようにする */
     z-index: 1000;
     background: #fff;
     padding: 10px 0;
-    margin: 0;
     border: none;
-    box-sizing: border-box;/* ← これも追加 */
+    box-sizing: border-box;
+    display: block;
   }
 
   button {
@@ -68,8 +72,11 @@
       font-size: 1.1em;
     }
     audio {
-      width: 100vw;      /* モバイルでもvwで統一 */
-      transform: none;
+      width: 100vw;
+      max-width: 100vw;
+      min-width: 0;
+      left: 0;
+      right: 0;
       height: 44px;
       top: 8px;
       padding: 0;
@@ -152,4 +159,3 @@ function finishReading() {
 
 </body>
 </html>
-
