@@ -51,6 +51,12 @@
   #controls { margin: 30px 0; }
   #questions { margin-top: 30px; }
 
+  /* チェックボックスの選択肢に余白をあける */
+  .question-option {
+    display: block;
+    margin-bottom: 18px; /* 好みで調整、1行分空ける */
+  }
+
   /* --- モバイル用スタイル --- */
   @media (max-width: 600px) {
     body { 
@@ -70,6 +76,10 @@
     }
     input[type="checkbox"] {
       transform: scale(1.2);
+    }
+    /* モバイルでもチェックボックス選択肢に余白を */
+    .question-option {
+      margin-bottom: 16px;
     }
   }
 </style>
@@ -97,10 +107,10 @@
 <div id="questions">
   <h3>Quiz</h3>
   <label>Select all options below that match the content of the passage.</label><br>
-  <input type="checkbox" class="q1" value="a"> It helps robots work with people.<br>
-  <input type="checkbox" class="q1" value="b"> Robots using Gemini Robotics 1.5 need training for every job.<br>
-  <input type="checkbox" class="q1" value="c"> Robots can move and act in the real world with Gemini Robotics 1.5.<br>
-  <input type="checkbox" class="q1" value="d"> Gemini Robotics 1.5 is not safe for school.<br>
+  <span class="question-option"><input type="checkbox" class="q1" value="a"> It helps robots work with people.</span>
+  <span class="question-option"><input type="checkbox" class="q1" value="b"> Robots using Gemini Robotics 1.5 need training for every job.</span>
+  <span class="question-option"><input type="checkbox" class="q1" value="c"> Robots can move and act in the real world with Gemini Robotics 1.5.</span>
+  <span class="question-option"><input type="checkbox" class="q1" value="d"> Gemini Robotics 1.5 is not safe for school.</span>
 </div>
 
 <div id="result"></div>
@@ -138,4 +148,3 @@ function finishReading() {
 
 </body>
 </html>
-
