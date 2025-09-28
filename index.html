@@ -173,27 +173,26 @@ function finishReading() {
   const numIncorrect = checked.filter(val => !correctAnswers.includes(val)).length;
   const totalCorrect = correctAnswers.length;
 
-  // 新しいAccuracy計算
-  let accuracy = 0;
-  if (numIncorrect > 0) {
-    accuracy = 0; // 誤答があれば0%
-  } else {
-    accuracy = numCorrect / totalCorrect; // 正しく選んだ数／正答数
+  // 指定されたAccuracy計算
+  let accuracy = ((numCorrect - numIncorrect) / totalCorrect) * 100;
+  if (accuracy < 0) {
+    accuracy = 0;
   }
 
   const rawWPM = (wordCount / elapsedSec) * 60;
-  const finalWPM = Math.round(rawWPM * accuracy);
+  const finalWPM = Math.round(rawWPM * (accuracy / 100));
 
   document.getElementById("result").innerHTML =
     `Time: ${elapsedSec.toFixed(1)} sec<br>` +
     `Raw WPM: ${rawWPM.toFixed(1)}<br>` +
-    `Accuracy: ${(accuracy*100).toFixed(0)}%<br>` +
+    `Accuracy: ${accuracy.toFixed(0)}%<br>` +
     `Final WPM (accuracy applied): ${finalWPM}`;
 }
 </script>
 
 </body>
 </html>
+
 
 
 
