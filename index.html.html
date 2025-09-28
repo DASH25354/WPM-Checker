@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WPM Quiz - 100 Words</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  #text { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; background: #f9f9f9; }
+  #controls { margin: 20px 0; }
+  #questions { margin-top: 20px; }
+</style>
+</head>
+<body>
+
+<h2>Reading WPM Quiz (100 Words)</h2>
+
+<div id="text">
+Learning a new language can be both exciting and challenging. Many students find that practicing reading, writing, listening, and speaking every day helps them improve faster. One effective strategy is to read short stories or articles in the target language, paying attention to new vocabulary and sentence structures. Additionally, speaking with native speakers or using language exchange apps can greatly enhance pronunciation and fluency. It is important to review mistakes, learn from them, and remain consistent with daily practice. Over time, learners notice significant improvements in comprehension and communication skills.
+</div>
+
+<div id="controls">
+  <button onclick="startReading()">▶ Start</button>
+  <button onclick="finishReading()">⏹ Finish</button>
+</div>
+
+<div id="questions">
+  <h3>Quiz Question</h3>
+  <label>Which of the following are mentioned as effective strategies to improve language skills? (Select all that apply)</label><br>
+  <input type="checkbox" class="q1" value="a"> Reading short stories or articles<br>
+  <input type="checkbox" class="q1" value="b"> Watching TV<br>
+  <input type="checkbox" class="q1" value="c"> Speaking with native speakers<br>
+  <input type="checkbox" class="q1" value="d"> Sleeping<br>
+</div>
+
+<div id="result"></div>
+
+<script>
+let startTime;
+let wordCount = 0;
+
+function startReading() {
+  const text = document.getElementById("text").innerText.trim();
+  wordCount = text.split(/\s+/).length;
+  startTime = Date.now();
+  document.getElementById("result").innerText = "Reading started...";
+}
+
+function finishReading() {
+  if (!startTime) return alert("Please start reading first!");
+  const elapsedSec = (Date.now() - startTime) / 1000;
+
+  // 正答の配列（複数正解対応）
+  const correctAnswers = ["a", "c"];
+
+  // 選択されたチェックボックスを取得
+  const checked = Array.from(document.querySelectorAll(".q1:checked")).map(el => el.value);
+
+  // 正答数計算（余分に選んだものもペナルティにする場合は調整可能）
+  const numCorrect = checked.filter(val => correctAnswers.includes(val)).length;
+
+  // 正答率 = 選択された正答の割合
+  const accuracy = numCorrect / correctAnswers.length;
+
+  const rawWPM = (wordCount / elapsedSec) * 60;
+  const finalWPM = Math.round(rawWPM * accuracy);
+
+  document.getElementById("result").innerHTML =
+    `Time: ${elapsedSec.toFixed(1)} sec<br>` +
+    `Raw WPM: ${rawWPM.toFixed(1)}<br>` +
+    `Accuracy: ${(accuracy*100).toFixed(0)}%<br>` +
+    `Final WPM (accuracy applied): ${finalWPM}`;
+}
+</script>
+
+</body>
+</html>
