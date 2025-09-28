@@ -3,29 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <title>WPM Quiz with Audio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   body { 
     font-family: Arial, sans-serif; 
     padding: 30px; 
-    font-size: 1.5em; /* 本文サイズ1.5倍 */
-    padding-top: 140px; /* 固定オーディオ分の余白 */
+    font-size: 1.5em;
+    padding-top: 140px; /* PCデフォルト */
+    box-sizing: border-box;
   }
 
   h2, h3 {
-    font-size: 1.5em; /* 見出しも1.5倍 */
+    font-size: 1.5em;
   }
 
-  /* 音声プレーヤーを画面上部に固定 */
   audio {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%; 
-    transform: scale(1.5); /* 1.5倍拡大 */
+    width: 100%;
+    transform: scale(1.5);
     transform-origin: top left;
     z-index: 1000;
-    background: #fff; /* 下が透けないように白背景 */
+    background: #fff;
     padding: 10px 0;
+    box-sizing: border-box;
   }
 
   button {
@@ -35,7 +37,7 @@
   }
 
   input[type="checkbox"] {
-    transform: scale(1.5); /* チェックボックスを1.5倍 */
+    transform: scale(1.5);
     margin-right: 10px;
   }
 
@@ -48,6 +50,28 @@
 
   #controls { margin: 30px 0; }
   #questions { margin-top: 30px; }
+
+  /* --- モバイル用スタイル --- */
+  @media (max-width: 600px) {
+    body { 
+      padding-top: 70px; /* オーディオ分の余白を小さく */
+      font-size: 1.1em;
+    }
+    audio {
+      transform: none;    /* 拡大せず標準サイズ */
+      height: 44px;       /* iOSやAndroid標準UIに合わせる */
+      top: 8px;           /* アドレスバーを避けて少し下げる */
+      padding: 0;
+    }
+    #text { padding: 15px; }
+    button {
+      font-size: 1em;
+      padding: 10px 16px;
+    }
+    input[type="checkbox"] {
+      transform: scale(1.2);
+    }
+  }
 </style>
 </head>
 <body>
@@ -66,13 +90,11 @@
 【1】Gemini Robotics 1.5 is a new AI model. It helps robots see, think, and act in the real world. Robots with Gemini Robotics 1.5 can do many jobs. They can work with people, use tools, and solve problems. They do not need to be trained for every job; they can learn and try new things. This model is safe, smart, and works well. It is easy for developers to use. Gemini Robotics 1.5 helps robots finish tasks step by step. It is good for schools, homes, and factories. Now, robots can help people more. They can understand and move around. Gemini Robotics 1.5 makes robots helpful in our life.
 </div>
 
-<!-- スタート・フィニッシュボタン -->
 <div id="controls">
   <button onclick="startReading()">▶ Start</button>
   <button onclick="finishReading()">⏹ Finish</button>
 </div>
 
-<!-- 4択クイズ -->
 <div id="questions">
   <h3>Quiz</h3>
   <label>Select all options below that match the content of the passage. (Select all that apply)</label><br>
